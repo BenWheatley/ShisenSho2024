@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ShisenSho</title>
+	<link rel="stylesheet" href="ShisenSho.css">
+	<script src="ShisenSho.js"></script>
+</head>
+<body>
+	<div id="controls">
+		<span class="button" id="hints"></span>
+		<span class="button" id="zaps"></span>
+		<span class="button" id="magicWand"></span>
+		<span class="label" id="remaining"></span>
+	</div>
+	<div class="label" id="messages"></div>
+	<div id="game-area"></div>
+    <script>
+        window.addEventListener('load', () => {
+            document.gameArea = document.getElementById("game-area");
+            let difficulty = ShisenSho.DIFFICULTY_EASY;
+            let game = new ShisenSho(difficulty, document.gameArea);
+            game.configureHintButton(document.getElementById("hints"));
+			game.configureZapButton(document.getElementById("zaps"));
+			game.configureMagicWandButton(document.getElementById("magicWand"));
+			game.remainingCountLabel = document.getElementById("remaining");
+			game.messagesLabel = document.getElementById("messages");
+			game.updateUI();
+			document.game = game;
+        });
+    </script>
+</body>
+</html>
