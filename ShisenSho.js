@@ -142,6 +142,8 @@ class ShisenSho {
 	messagesLabel = null;
 	
 	overlayCanvas = null;
+	gameOverContainer = null;
+	gameOverMessage = null;
 	
 	static DIFFICULTY_EASY = 0;
 	static DIFFICULTY_MEDIUM = 1;
@@ -389,11 +391,16 @@ class ShisenSho {
 	}
 	
 	win() {
-		this.post_message(ShisenSho.WIN_CAPTION);
+		this.showGameOverWithMessage(ShisenSho.WIN_CAPTION);
 	}
 	
 	lose() {
-		this.post_message(ShisenSho.LOSE_CAPTION);
+		this.showGameOverWithMessage(ShisenSho.LOSE_CAPTION);
+	}
+	
+	showGameOverWithMessage(message) {
+		this.gameOverContainer.classList.add('visible');
+		this.gameOverMessage.innerText = message;
 	}
 	
 	count_remaining_moves() {

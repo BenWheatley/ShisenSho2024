@@ -16,6 +16,14 @@
 	</div>
 	<div class="label" id="messages"></div>
 	<div id="game-area"></div>
+	<div id="game-over-screen">
+		<div id="game-over-message"></div>
+		<div class="label"><div>New Game:</div>
+			<div class="button" onclick="newGame(ShisenSho.DIFFICULTY_EASY);">Easy</div>
+			<div class="button" onclick="newGame(ShisenSho.DIFFICULTY_MEDIUM);">Medium</div>
+			<div class="button" onclick="newGame(ShisenSho.DIFFICULTY_HARD);">Hard</div>
+		</div>
+	</div>
     <script>
 		function newGame(difficulty) {
 			document.gameArea = document.getElementById("game-area");

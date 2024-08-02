@@ -77,3 +77,42 @@ canvas.fade-out {
 	opacity: 0;
 	transition: opacity 1s ease-out;
 }
+
+#game-over-screen {
+	pointer-events: none;
+	display: hidden;
+	opacity: 0;
+	transition: opacity 1s ease-out;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+	height: auto;
+	background: rgb(120, 88, 0);
+	border: 5px ridge rgb(120, 88, 0);
+	padding: 20px;
+	box-sizing: border-box;
+}
+#game-over-screen.visible {
+	display: block;
+	opacity: 1;
+	pointer-events: auto;
+}
+
+#game-over-message {
+	font-size: 300%;
+	text-align: center;
+}
+
+#game-over-screen .label {
+	height: auto;
+	width: 50%;
+	margin: 1em auto;
+}
+
+#game-over-screen .label .button {
+	text-align: center;
+	margin: 1em auto;
+	display: block;
+}
