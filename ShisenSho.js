@@ -559,7 +559,6 @@ class ShisenSho {
 	some_cells_removed(show_path) {
 		if (show_path) {
 			this.path_opacity = 1.0;
-			console.log("path: " + this.path);
 			this.drawPath([...this.path]);
 		}
 		this.do_endgame_check();
