@@ -168,15 +168,15 @@ class ShisenSho {
 			MIN_MATCHING_PAIRS = 12;
 			MAX_MATCHING_PAIRS = 144;
 			break;
-		case ShisenSho.DIFFICULTY_MEDIUM:
-						this.remaining_hints = this.remaining_cheats = this.remaining_zaps = 2;
-			MIN_MATCHING_PAIRS = 9;
-			MAX_MATCHING_PAIRS = 14;
-			break;
 		case ShisenSho.DIFFICULTY_HARD:
-						this.remaining_hints = this.remaining_cheats = this.remaining_zaps = 0;
+			this.remaining_hints = this.remaining_cheats = this.remaining_zaps = 0;
 			MIN_MATCHING_PAIRS = 2;
 			MAX_MATCHING_PAIRS = 10;
+			break;
+		default: // Anything not recognised is assumed to be ShisenSho.DIFFICULTY_MEDIUM:
+			this.remaining_hints = this.remaining_cheats = this.remaining_zaps = 2;
+			MIN_MATCHING_PAIRS = 9;
+			MAX_MATCHING_PAIRS = 14;
 			break;
 		}
 		this.cells = [];

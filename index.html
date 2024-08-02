@@ -17,18 +17,28 @@
 	<div class="label" id="messages"></div>
 	<div id="game-area"></div>
     <script>
-        window.addEventListener('load', () => {
-            document.gameArea = document.getElementById("game-area");
-            let difficulty = ShisenSho.DIFFICULTY_EASY;
-            let game = new ShisenSho(difficulty, document.gameArea);
-            game.configureHintButton(document.getElementById("hints"));
+		function newGame(difficulty) {
+			document.gameArea = document.getElementById("game-area");
+			let game = new ShisenSho(difficulty, document.gameArea);
+			game.configureHintButton(document.getElementById("hints"));
 			game.configureZapButton(document.getElementById("zaps"));
 			game.configureMagicWandButton(document.getElementById("magicWand"));
 			game.remainingCountLabel = document.getElementById("remaining");
 			game.messagesLabel = document.getElementById("messages");
+			game.gameOverContainer = document.getElementById("game-over-screen");
+			game.gameOverMessage = document.getElementById("game-over-message");
 			game.updateUI();
 			document.game = game;
-        });
-    </script>
+			game.gameOverContainer.classList.remove('visible');
+		}
+		window.addEventListener('load', () => {
+			const urlParams = new URLSearchParams(window.location.search);
+			let difficulty = parseInt(urlParams.get('difficulty'));
+			if (isNaN(difficulty)) {
+				difficulty = ShisenSho.DIFFICULTY_EASY;
+			}
+			newGame(difficulty);
+		});
+	</script>
 </body>
 </html>
