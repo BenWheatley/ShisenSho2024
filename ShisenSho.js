@@ -232,12 +232,6 @@ class ShisenSho {
 		}
 	}
 	
-	logic() {
-		if (this.path_opacity>0.02) this.path_opacity *= 0.975;
-		else this.path_opacity = 0;
-		this.do_endgame_check();
-	}
-	
 	configureMagicWandButton(element) {
 		this.magicWandButton = element;
 		this.magicWandButton.addEventListener('click', () => {
@@ -379,7 +373,6 @@ class ShisenSho {
 				this.selected_cell = this.cells[cel_column][cell_row];
 				this.selected_cell.setHighlighted(true);
 			}
-			this.do_endgame_check();
 		}
 		else {
 			// This means there was no cell at that location. Do nothing
@@ -569,6 +562,7 @@ class ShisenSho {
 			console.log("path: " + this.path);
 			this.drawPath([...this.path]);
 		}
+		this.do_endgame_check();
 		this.updateUI();
 	}
 	
