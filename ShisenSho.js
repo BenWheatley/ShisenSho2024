@@ -92,9 +92,13 @@ class Tile {
 		}
 	}
 	
-	setHinted() {
-		this.hinted = true;
-		this.element.classList.add('hinted');
+	setHinted(newValue) {
+		this.hinted = newValue;
+		if (newValue) {
+			this.element.classList.add('hinted');
+		} else {
+			this.element.classList.remove('hinted');
+		}
 	}
 	
 	reposition(x, y) {
@@ -317,10 +321,11 @@ class ShisenSho {
 		if (this.count_remaining_moves()==0) {
 			this.post_message(ShisenSho.NO_MOVES_REMAINING_TRY_ZAPPING_OR_CHEATING);
 		}
-		else if (this.there_are_hinted_tiles()) {
+		else if (this.count_hinted_tiles() == 2) {
 			this.post_message(ShisenSho.CLICK_THE_FLASHING_TILES);
 		}
 		else {
+			this.clear_tile_hints();
 			this.remaining_hints--;
 			for (x1=0; x1<ShisenSho.GRID_WIDTH; x1++) { for (y1=0; y1<ShisenSho.GRID_HEIGHT; y1++) {
 				if (this.cell_exists(x1, y1)) {
@@ -329,8 +334,8 @@ class ShisenSho {
 						var tile_2 = this.cells[x2][y2];
 						if (this.cell_exists(x2, y2) && tile_1.id==tile_2.id) {
 							if (this.spider_search_wrapper(x1, y1, x2, y2)) {
-								tile_1.setHinted();
-								tile_2.setHinted();
+								tile_1.setHinted(true);
+								tile_2.setHinted(true);
 								this.post_message(ShisenSho.CLICK_THE_FLASHING_TILES);
 								this.updateUI();
 								return;
@@ -341,14 +346,27 @@ class ShisenSho {
 			} }
 		}
 	}
-
-	there_are_hinted_tiles() {
+	
+	clear_tile_hints() {
 		for (let x1=0; x1<ShisenSho.GRID_WIDTH; x1++) {
 			for (let y1=0; y1<ShisenSho.GRID_HEIGHT; y1++) {
-				if (this.cell_exists(x1, y1) && this.cells[x1][y1].hinted) return true;
+				if (this.cell_exists(x1, y1)) {
+					this.cells[x1][y1].setHinted(false);
+				}
 			}
 		}
-		return false;
+	}
+	
+	count_hinted_tiles() {
+		var result = 0;
+		for (let x1=0; x1<ShisenSho.GRID_WIDTH; x1++) {
+			for (let y1=0; y1<ShisenSho.GRID_HEIGHT; y1++) {
+				if (this.cell_exists(x1, y1) && this.cells[x1][y1].hinted) {
+					result++;
+				}
+			}
+		}
+		return result;
 	}
 	
 	cell_click(cel_column, cell_row) {
@@ -564,6 +582,9 @@ class ShisenSho {
 	}
 	
 	some_cells_removed(show_path) {
+		if (this.count_hinted_tiles() != 2) {
+			this.clear_tile_hints();
+		}
 		if (show_path) {
 			this.path_opacity = 1.0;
 			this.drawPath([...this.path]);
