@@ -192,7 +192,7 @@ class ShisenSho {
 			var shuffledTiles = unshuffledTiles
 				.map(value => ({ value, sort: Math.random() }))
 				.sort((a, b) => a.sort - b.sort)
-				.map(({ value }) => value)
+				.map(({ value }) => value);
 			for (let x=0; x<ShisenSho.GRID_WIDTH; ++x) {
 				this.cells[x] = [];
 				if (x!=0 && x!=ShisenSho.GRID_WIDTH-1) {
