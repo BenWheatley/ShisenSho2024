@@ -595,9 +595,9 @@ class ShisenSho {
 	
 	drawPath(path) {
 		if (this.overlayCanvas == null) return;
-	this.overlayCanvas.classList.remove('fade-out');
-	void this.overlayCanvas.offsetWidth; // Trigger reflow
-	this.overlayCanvas.classList.add('fade-out');
+		this.overlayCanvas.classList.remove('fade-out');
+		void this.overlayCanvas.offsetWidth; // Trigger reflow
+		this.overlayCanvas.classList.add('fade-out');
 		let ctx = this.overlayCanvas.getContext('2d');
 		ctx.clearRect(0, 0, this.overlayCanvas.width, this.overlayCanvas.height);
 		ctx.strokeStyle = 'red';
