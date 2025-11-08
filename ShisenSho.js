@@ -63,7 +63,7 @@ class Tile {
 	constructor(game, id, parentElement, clickHandler) {
 		this.game = game;
 		this.id = id;
-		this.element = document.createElement('img');
+		this.element = document.createElement('div');
 		this.element.style.backgroundImage = `url(tiles/${Tile.sourceForID[id]})`;
 		this.element.className = 'tile';
 		this.element.style.height = `${Tile.HEIGHT}px`;
