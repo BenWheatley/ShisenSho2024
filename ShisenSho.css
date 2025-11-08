@@ -80,7 +80,7 @@ canvas.fade-out {
 
 #game-over-screen {
 	pointer-events: none;
-	display: hidden;
+	display: none;
 	opacity: 0;
 	transition: opacity 1s ease-out;
 	position: fixed;
