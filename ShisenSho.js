@@ -78,9 +78,9 @@ class Tile {
 		this.fadeoutBegan = true;
 		this.element.style.transition = 'opacity 0.5s ease-out'; // Apply transition effect
 		this.element.style.opacity = '0'; // Set final opacity to trigger fade-out
-		
+
 		// Remove the element from the DOM after the transition ends
-		this.element.addEventListener('transitionend', () => this.element.remove());
+		this.element.addEventListener('transitionend', () => this.element.remove(), { once: true });
 	}
 	
 	setHighlighted(newValue) {
