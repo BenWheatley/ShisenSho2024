@@ -113,7 +113,7 @@ class ShisenSho {
 	static LOSE_CAPTION = "Defeated!\n(No more moves)";
 	
 	static HELP_BASIC =
-		"Connect matching tiles. The path between them must not go over other tiles,  and must have no more than three segments.";
+		"Connect matching tiles. The path between them must not go over other tiles, and must have no more than three segments.";
 	
 	static NO_MORE_ZAPS_THIS_GAME = "No more zaps this game";
 	static NO_MORE_CHEATS_THIS_GAME = "No more cheats this game";
