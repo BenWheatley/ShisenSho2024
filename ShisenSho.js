@@ -185,6 +185,7 @@ class ShisenSho {
 			MAX_MATCHING_PAIRS = 14;
 			break;
 		}
+		this.cleanup();
 		this.cells = [];
 		do {
 			gameContainerElement.textContent = '';
@@ -214,6 +215,19 @@ class ShisenSho {
 		this.repositionAllTiles();
 	}
 	
+	cleanup() {
+		// Remove all existing tiles and their event listeners
+		for (let x=0; x<ShisenSho.GRID_WIDTH; ++x) {
+			if (this.cells[x]) {
+				for (let y=0; y<ShisenSho.GRID_HEIGHT; ++y) {
+					if (this.cells[x][y] && this.cells[x][y].element) {
+						this.cells[x][y].element.remove();
+					}
+				}
+			}
+		}
+	}
+
 	repositionAllTiles() {
 		for (let x=1; x<ShisenSho.GRID_WIDTH-1; ++x) {
 			for (let y=1; y<ShisenSho.GRID_HEIGHT-1; ++y) {

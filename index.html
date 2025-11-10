@@ -26,6 +26,11 @@
 	</div>
     <script>
 		function newGame(difficulty) {
+			// Clean up old game if it exists
+			if (document.game && document.game.cleanup) {
+				document.game.cleanup();
+			}
+
 			document.gameArea = document.getElementById("game-area");
 			let game = new ShisenSho(difficulty, document.gameArea);
 			game.configureHintButton(document.getElementById("hints"));
