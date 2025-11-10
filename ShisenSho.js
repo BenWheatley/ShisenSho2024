@@ -127,7 +127,7 @@ class ShisenSho {
 	
 	cells = [];
 	remaining_hints = 0;
-	remaining_cheats = 0
+	remaining_cheats = 0;
 	remaining_zaps = 0;
 	magic_connect = false;
 	path = [];
