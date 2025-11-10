@@ -131,7 +131,6 @@ class ShisenSho {
 	remaining_zaps = 0;
 	magic_connect = false;
 	path = [];
-	path_opacity = 0;
 	
 	selected_cell;
 	initial_matching_pair_count = 0;
@@ -607,7 +606,6 @@ class ShisenSho {
 			this.clear_tile_hints();
 		}
 		if (show_path) {
-			this.path_opacity = 1.0;
 			this.drawPath([...this.path]);
 		}
 		this.do_endgame_check();
