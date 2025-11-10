@@ -383,18 +383,18 @@ class ShisenSho {
 		return result;
 	}
 	
-	cell_click(cel_column, cell_row) {
-		if (cel_column>=0 && cell_row>=0 && cel_column<ShisenSho.GRID_WIDTH && cell_row<ShisenSho.GRID_HEIGHT) {
-			if (this.cell_exists(cel_column, cell_row) && 1==this.selected_cell_count()) {
-				if (this.cells[cel_column][cell_row] == this.selected_cell) {
-					this.cells[cel_column][cell_row].setHighlighted( !this.cells[cel_column][cell_row].highlighted);
+	cell_click(cell_column, cell_row) {
+		if (cell_column>=0 && cell_row>=0 && cell_column<ShisenSho.GRID_WIDTH && cell_row<ShisenSho.GRID_HEIGHT) {
+			if (this.cell_exists(cell_column, cell_row) && 1==this.selected_cell_count()) {
+				if (this.cells[cell_column][cell_row] == this.selected_cell) {
+					this.cells[cell_column][cell_row].setHighlighted( !this.cells[cell_column][cell_row].highlighted);
 				}
 				else {
-					if (this.cells[cel_column][cell_row].id==this.selected_cell.id) {
-						this.cells[cel_column][cell_row].setHighlighted(true);
+					if (this.cells[cell_column][cell_row].id==this.selected_cell.id) {
+						this.cells[cell_column][cell_row].setHighlighted(true);
 						this.try_to_remove_cell_pair();
-						if (this.cell_exists(cel_column, cell_row)) { // Remove failed
-							this.cells[cel_column][cell_row].setHighlighted(false);
+						if (this.cell_exists(cell_column, cell_row)) { // Remove failed
+							this.cells[cell_column][cell_row].setHighlighted(false);
 							this.post_message(ShisenSho.NO_ROUTE_BETWEEN_THOSE_TILES);
 						}
 					}
@@ -403,8 +403,8 @@ class ShisenSho {
 					}
 				}
 			}
-			else if (0==this.selected_cell_count() && this.cell_exists(cel_column, cell_row)) {
-				this.selected_cell = this.cells[cel_column][cell_row];
+			else if (0==this.selected_cell_count() && this.cell_exists(cell_column, cell_row)) {
+				this.selected_cell = this.cells[cell_column][cell_row];
 				this.selected_cell.setHighlighted(true);
 			}
 		}
