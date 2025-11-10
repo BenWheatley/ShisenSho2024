@@ -57,6 +57,11 @@ body {
 	margin: 1em;
 }
 
+.button.active {
+	border: 5px inset rgb(37, 190, 150);
+	background-color: rgb(30, 150, 120);
+}
+
 .label {
 	background-color: rgb(37, 150, 190);
 	border: 5px ridge rgb(37, 150, 190);

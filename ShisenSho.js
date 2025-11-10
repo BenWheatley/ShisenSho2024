@@ -123,7 +123,7 @@ class ShisenSho {
 	static NO_MOVES_REMAINING_TRY_ZAPPING_OR_CHEATING = "No moves remaining, try zapping or cheating.";
 	static NO_MORE_HINTS_THIS_GAME = "No more hints this game";
 	
-	static HELP_CHEAT = "Connect tiles anywhere, or click 'Cheat' again to cancel.";
+	static HELP_CHEAT = "Magic active: Click any two matching tiles to remove them (ignores path rules). Click Magic again to cancel.";
 	
 	cells = [];
 	remaining_hints = 0;
@@ -131,7 +131,6 @@ class ShisenSho {
 	remaining_zaps = 0;
 	magic_connect = false;
 	path = [];
-	magic_path = [];
 	path_opacity = 0;
 	
 	selected_cell;
@@ -240,8 +239,15 @@ class ShisenSho {
 		this.hintButton.innerText = `Hints: ${this.remaining_hints}`;
 		this.zapButton.innerText = `Zaps: ${this.remaining_zaps}`;
 		this.magicWandButton.innerText = `Magic: ${this.remaining_cheats}`;
+
+		// Update magic button visual state
+		if (this.magic_connect) {
+			this.magicWandButton.classList.add('active');
+		} else {
+			this.magicWandButton.classList.remove('active');
+		}
+
 		this.remainingCountLabel.innerText = `Available moves: ${this.count_remaining_moves()}`;
-		this.post_message(ShisenSho.HELP_BASIC);
 	}
 	
 	post_message(message) {
@@ -263,6 +269,7 @@ class ShisenSho {
 		if (this.magic_connect) {
 			this.remaining_cheats++;
 			this.magic_connect = false;
+			this.post_message(ShisenSho.HELP_BASIC);
 		}
 		else {
 			if (this.remaining_cheats>0) {
@@ -274,7 +281,7 @@ class ShisenSho {
 				this.post_message(ShisenSho.NO_MORE_CHEATS_THIS_GAME);
 			}
 		}
-		
+
 		this.updateUI();
 	}
 	
@@ -605,6 +612,7 @@ class ShisenSho {
 		}
 		this.do_endgame_check();
 		this.updateUI();
+		this.post_message(ShisenSho.HELP_BASIC);
 	}
 	
 	drawPath(path) {

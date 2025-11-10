@@ -41,6 +41,7 @@
 			game.gameOverContainer = document.getElementById("game-over-screen");
 			game.gameOverMessage = document.getElementById("game-over-message");
 			game.updateUI();
+			game.post_message(ShisenSho.HELP_BASIC);
 			document.game = game;
 			game.gameOverContainer.classList.remove('visible');
 		}
