@@ -35,36 +35,57 @@ class Tile {
 		"Dragon-Blank.png",
 		"Dragon-Green.png",
 		"Dragon-Red.png",
-		//"Flower-Bamboo.png",
-		"Flower-Chrysanthemum.png",
-		//"Flower-Orchid.png",
-		//"Flower-Plum.png",
-		"Season-Autumn.png",
-		//"Season-Spring.png",
-		//"Season-Summer.png",
-		//"Season-Winter.png",
+		"Flower", // ID 30 - variant selects which flower
+		"Season", // ID 31 - variant selects which season
 		"Wind-East.png",
 		"Wind-North.png",
 		"Wind-South.png",
 		"Wind-West.png",
 	];
-	
+
+	static flowerVariants = [
+		"Flower-Plum.png",
+		"Flower-Orchid.png",
+		"Flower-Chrysanthemum.png",
+		"Flower-Bamboo.png",
+	];
+
+	static seasonVariants = [
+		"Season-Spring.png",
+		"Season-Summer.png",
+		"Season-Autumn.png",
+		"Season-Winter.png",
+	];
+
 	highlighted = false;
 	hinted = false;
 	id = 0;
+	variant = 0;
 	fadeoutBegan = false;
 	element = null;
-	
+
 	x;
 	y;
-	
+
 	game;
-	
-	constructor(game, id, parentElement, clickHandler) {
+
+	constructor(game, id, variant, parentElement, clickHandler) {
 		this.game = game;
 		this.id = id;
+		this.variant = variant;
 		this.element = document.createElement('div');
-		this.element.style.backgroundImage = `url(tiles/${Tile.sourceForID[id]})`;
+
+		// Select image based on ID and variant
+		let imagePath;
+		if (Tile.sourceForID[id] === "Flower") {
+			imagePath = Tile.flowerVariants[variant];
+		} else if (Tile.sourceForID[id] === "Season") {
+			imagePath = Tile.seasonVariants[variant];
+		} else {
+			imagePath = Tile.sourceForID[id];
+		}
+
+		this.element.style.backgroundImage = `url(tiles/${imagePath})`;
 		this.element.className = 'tile';
 		this.element.style.height = `${Tile.HEIGHT}px`;
 		this.element.style.width = `${Tile.WIDTH}px`;
@@ -190,7 +211,7 @@ class ShisenSho {
 			const MAX = (ShisenSho.GRID_WIDTH-2)*(ShisenSho.GRID_HEIGHT-2);
 			var unshuffledTiles = new Array(MAX);
 			for (let i=0; i<MAX; ++i) {
-				unshuffledTiles[i] = new Tile(this, Math.floor(i / 4), gameContainerElement);
+				unshuffledTiles[i] = new Tile(this, Math.floor(i / 4), i % 4, gameContainerElement);
 			}
 			var shuffledTiles = unshuffledTiles
 				.map(value => ({ value, sort: Math.random() }))
