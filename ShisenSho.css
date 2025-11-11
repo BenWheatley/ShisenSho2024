@@ -32,8 +32,9 @@ body {
 }
 
 @keyframes flash {
-	0% { background-color: rgba(0, 255, 0, 0.3); }
+	0% { background-color: rgba(0, 255, 0, 0.3); transform: scale(1); }
 	50% { background-color: rgba(0, 255, 0, 0.8); transform: scale(0.9); }
+	100% { background-color: rgba(0, 255, 0, 0.3); transform: scale(1); }
 }
 .tile.hinted {
 	background-color: rgba(0, 255, 0, 0.1);
